@@ -1,18 +1,35 @@
 {
-  "name": "neon-automation",
+  "name": "db-rotator",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Config-based database rotation and migration tool for Neon and Supabase.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "db-rotator": "./bin/db-rotator.js"
   },
-  "keywords": [],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "database",
+    "rotation",
+    "neon",
+    "supabase",
+    "postgres",
+    "migration"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "module",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.13.6",
     "dotenv": "^17.3.1",
     "pg": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.13",
+    "@types/pg": "^8.18.0",
+    "typescript": "^5.7.0"
   }
 }
