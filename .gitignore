@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+
+# Dumps / backups created by migration
+dump-*.sql
+.env.bak-*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/
+
