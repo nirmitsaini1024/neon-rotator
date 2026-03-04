@@ -94,11 +94,19 @@ export async function getConnectionStrings(config: NeonConfig, projectId: string
 
   const baseUri: string = conn.data.uri;
 
-  const DATABASE_URL =
-    `${baseUri}?sslmode=require&pgbouncer=true&connection_limit=1`;
+  // Neon already returns a URI that may include query parameters
+  // such as sslmode and channel_binding. We normalize them using URL
+  // to avoid accidentally appending a second `?sslmode=...`.
+  const pooled = new URL(baseUri);
+  pooled.searchParams.set("sslmode", "require");
+  pooled.searchParams.set("pgbouncer", "true");
+  pooled.searchParams.set("connection_limit", "1");
 
-  const DATABASE_URL_UNPOOLED =
-    `${baseUri}?sslmode=require`;
+  const unpooled = new URL(baseUri);
+  unpooled.searchParams.set("sslmode", "require");
+
+  const DATABASE_URL = pooled.toString();
+  const DATABASE_URL_UNPOOLED = unpooled.toString();
 
   return {
     DATABASE_URL,

@@ -1,0 +1,6 @@
+{
+  "provider": "neon",
+  "projectNamePrefix": "auto-db",
+  "region": "aws-us-east-1",
+  "restartCommand": "pm2 restart all"
+}

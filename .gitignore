@@ -4,6 +4,9 @@
 
 # Dumps / backups created by migration
 dump-*.sql
+cleaned-dump-*.sql
+*.sql
+*.dump
 .env.bak-*
 
 # Node

@@ -13,8 +13,7 @@ function defaultConfig(provider: "neon" | "supabase") {
     return {
       provider: "neon",
       projectNamePrefix: "auto-db",
-      region: "aws-us-east-1",
-      restartCommand: "pm2 restart all"
+      region: "aws-us-east-1"
     };
   }
 
@@ -22,8 +21,7 @@ function defaultConfig(provider: "neon" | "supabase") {
     provider: "supabase",
     organizationId: "your-organization-id",
     projectNamePrefix: "auto-db",
-    region: "us-east-1",
-    restartCommand: "pm2 restart all"
+    region: "us-east-1"
   };
 }
 

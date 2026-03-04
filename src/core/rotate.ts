@@ -15,7 +15,7 @@ export interface BaseConfig {
   provider: ProviderName;
   projectNamePrefix: string;
   region: string;
-  restartCommand: string;
+  restartCommand?: string;
   organizationId?: string; // Supabase
 }
 
@@ -38,7 +38,6 @@ function loadConfig(opts: RotateOptions): BaseConfig {
   if (!parsed.provider) throw new Error("rotator.config.json: 'provider' is required.");
   if (!parsed.projectNamePrefix) throw new Error("rotator.config.json: 'projectNamePrefix' is required.");
   if (!parsed.region) throw new Error("rotator.config.json: 'region' is required.");
-  if (!parsed.restartCommand) throw new Error("rotator.config.json: 'restartCommand' is required.");
 
   return parsed;
 }
@@ -121,12 +120,22 @@ export async function rotate(options: RotateOptions = {}): Promise<void> {
     newDatabaseUrlUnpooled: connectionStrings.DATABASE_URL_UNPOOLED
   });
 
-  console.log("Restarting server...");
-  execSync(config.restartCommand, { stdio: "inherit", cwd });
-  console.log("Restart complete.");
+  if (config.restartCommand) {
+    console.log("Restarting server...");
+    try {
+      execSync(config.restartCommand, { stdio: "inherit", cwd });
+      console.log("Restart complete.");
+    } catch (err) {
+      console.warn("Restart command failed or not installed. Skipping restart.");
+      console.warn((err as Error)?.message || err);
+    }
+  }
 
   console.log("Rotation finished successfully.");
   console.log(`Previous env backup: ${envBackupPath}`);
   console.log(`Database dump: ${dumpPath}`);
+  console.log("");
+  console.log("Database rotation complete.");
+  console.log("If your app is running, restart it to use the new DATABASE_URL.");
 }
 
