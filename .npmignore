@@ -4,4 +4,7 @@ src
 rotator.config.json
 landing-page.png
 tsconfig.json
+.env
+.env.*
+.env.bak-*
 

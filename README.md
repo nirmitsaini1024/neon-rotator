@@ -15,6 +15,8 @@ It is provider-agnostic and currently supports:
 - **Neon**
 - **Supabase**
 
+**npm package**: [`db-rotator`](https://www.npmjs.com/package/db-rotator)
+
 You can use it both as:
 
 - A **CLI**: `db-rotator rotate`
