@@ -1,5 +1,7 @@
 # Neon Automation (Database Rotation)
 
+![Landing page](./landing-page.png)
+
 This repo contains a small automation toolkit to **rotate/migrate** a Neon Postgres database into a **fresh Neon project** when you’re nearing the free-tier transfer limit.
 
 It is designed to be **manually triggered** when you decide it’s time to rotate (for example, when the Neon dashboard shows **network transfer > 90% of 5GB**).
